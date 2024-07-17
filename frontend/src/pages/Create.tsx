@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import image from '../images/medium.png'
 import axios from 'axios';
+import AlertCustomStyles from '../components/Alert'
 export default function Create() {
     return (
         <div>
@@ -29,37 +30,46 @@ function Showtitlebar() {
     )
 }
 const API_URL = 'https://backend.siddhantclg.workers.dev/api/v1/book';
-
+type CustomChangeEvent = React.ChangeEvent<HTMLInputElement>;
 function C() {
     const [content, setcontent] = useState<string>('');
     const [title, settitle] = useState<string>('');
-    // console.log(title, 'title is ',content)
-    const tad= localStorage.getItem('jwttoken')
     
-    async function makerequest ():Promise<void> {
+    const [foralert ,setalert ] = useState(false)
+    async function makerequest(): Promise<void> {
         const body = {
             title,
             content
         }
         const token = `Bearer ${localStorage.getItem('jwttoken')}`;
-            const res = await axios.post(`${API_URL}/createblogfor`,body, {
-                headers: {
-                    Authorization: token,
-                },
-            });
-        // console.log('resis ', res)
+        const res = await axios.post(`${API_URL}/createblogfor`, body, {
+            headers: {
+                Authorization: token,
+            },
+        });
+        console.log(' ', res.data.message)
+        setalert(true)
     }
     return (
-    <div className='flex justify-center '>
-        <div className=' flex  gap-4 w-7/12'>
-        <div className='flex justify-center flex-col pl-3  text-3xl'>
-           <button onClick={makerequest}>+</button>
+        <div className='flex justify-center '>
+            <div className=' flex  gap-4 w-7/12'>
+                <div className='flex justify-center flex-col pl-3  text-3xl'>
+                    <button onClick={makerequest}>+</button>
+                </div>
+                <div className='w-full '>
+                    <div><input type="text" placeholder='Title' className='w-full h-14 text-3xl font-md' onChange={(e: CustomChangeEvent) => {
+                        const inputTarget = e.target as HTMLInputElement;
+                        settitle(inputTarget.value)
+                    }} /></div>
+                    <div><input type="text" placeholder='Tell your story ..' className='w-full h-8' onChange={(e: CustomChangeEvent) => {
+                         const inputTarget = e.target as HTMLInputElement;
+                        setcontent(inputTarget.value)
+                    }} /></div>
+                </div>
+            </div>
+            <div>
+                {foralert ? <AlertCustomStyles message = 'successfully created '/>: <div></div>}
+            </div>
         </div>
-        <div className='w-full '>
-            <div><input type="text" placeholder='Title' className='w-full h-14 text-3xl font-md' onChange={(e:Event) => settitle(e.currentTarget.value)}/></div>
-            <div><input type="text" placeholder='Tell your story ..' className='w-full h-8' onChange={(e:Event) => setcontent(e.currentTarget.value)} /></div>
-        </div>
-    </div>
-    </div>
     )
 }

@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom"
-import { useRecoilValue } from "recoil";
-import { blogPostFamily } from "../atoms/creat";
+// import { useRecoilValue } from "recoil";
+// import { blogPostFamily } from "../atoms/creat";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -15,7 +15,7 @@ export default function Showblgo() {
     const [nameof , setname ] = useState('');
     const [abouthim, setabouthim] = useState('');
 
-    const atomsdata = useRecoilValue(blogPostFamily(data.id));
+    // const atomsdata = useRecoilValue(blogPostFamily(data.id));
    
     useEffect(()=>{
         async function makerequest() {

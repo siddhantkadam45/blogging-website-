@@ -1,7 +1,7 @@
 import axios from "axios";
 import Inputbox from "./Inputbox";
 import Navigate from "./Navigate";
-import { ChangeEvent, useState } from "react";
+import {   useState } from "react";
 import { signininput } from "@siddhant1234/commonmodulesi";
 import { useNavigate } from "react-router-dom";
 
@@ -20,10 +20,11 @@ export default function Createsignin() {
         localStorage.setItem('jwttoken',res.data.jwt)
         navigate('/blog')
     }
+    
   return (
     <div>
-        <Inputbox name='Email' typename="email" onchange={(e:ChangeEvent)=> setemail(e.currentTarget.value)}/>
-        <Inputbox name='Password' typename="password" onchange={(e:ChangeEvent)=> setpassword(e.currentTarget.value)}/>
+        <Inputbox name='Email' typename="email" onchange={(e)=> setemail(e.target.value)}/>
+        <Inputbox name='Password' typename="password" onchange={(e)=> setpassword(e.target.value)}/>
         <Navigate  name="Signin" onchange={()=> handlesignin()} />
     </div>
   )

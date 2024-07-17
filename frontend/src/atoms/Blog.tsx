@@ -1,4 +1,4 @@
-import {  useRecoilValue, useSetRecoilState,useRecoilCallback } from "recoil";
+import {   useSetRecoilState,useRecoilCallback } from "recoil";
 import { BlogData } from "../components/Blogtemplate";
 import { blogPostFamily, blogPostIdsState } from "./creat";
 import { useEffect, useState } from "react";
@@ -45,7 +45,7 @@ function CreateAtoms({ arrayToStore }: BlogProps) {
   }
 
 function Showrecoilval () {
-    const ids = useRecoilValue(blogPostIdsState);
+    // const ids = useRecoilValue(blogPostIdsState);
     
     return <div></div>
 }

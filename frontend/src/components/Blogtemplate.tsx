@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import Setupdiv from './Blogholderf';
 import axios from 'axios';
 import Blog from '../atoms/Blog';
-import { RecoilRoot, useRecoilValue } from 'recoil';
+import { RecoilRoot } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { idnumber } from '../atoms/creat';
+// import { idnumber } from '../atoms/creat';
 
 export default function BlogTemplate() {
 	return (

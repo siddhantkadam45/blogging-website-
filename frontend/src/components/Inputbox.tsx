@@ -2,7 +2,7 @@
 type obj ={
     name:string,
     typename:string,
-    onchange:Function
+    onchange:(e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export default function Inputbox({ name, typename, onchange }:obj) {
     // console.log(onchange)

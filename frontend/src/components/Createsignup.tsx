@@ -2,12 +2,12 @@ import Showtitle from "./Showtitle";
 import Inputbox from './Inputbox';
 import Navigate from "./Navigate";
 import Cardholder from "./Cardholder";
-import { ChangeEvent, useState } from "react";
+import {  useState } from "react";
 import { signupinput } from '@siddhant1234/commonmodulesi'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { globalid } from "../atoms/creat";
+// import { useSetRecoilState } from "recoil";
+// import { globalid } from "../atoms/creat";
 
 
 export default function Createsignup() {
@@ -27,7 +27,7 @@ function Leftdiv() {
     const navigate = useNavigate();
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
-    const setglid = useSetRecoilState(globalid);
+    // const setglid = useSetRecoilState(globalid);
     async function handlechange() {
         const url = '/signup'
         const f = `${tempurl}${url}`
@@ -45,9 +45,9 @@ function Leftdiv() {
     return (
         <div className="w-full">
             <Showtitle title="Create an account" description="Already have an account ?" />
-            <Inputbox name='Username' typename='text' onchange={(e: ChangeEvent) => setusername(e.currentTarget.value)} />
-            <Inputbox name="Email" typename="email" onchange={(p: ChangeEvent) => setemail(p.currentTarget.value)} />
-            <Inputbox name='Password' typename='password' onchange={(e: ChangeEvent) => setpassword(e.currentTarget.value)} />
+            <Inputbox name='Username' typename='text' onchange={(e) => setusername(e.target.value)} />
+            <Inputbox name="Email" typename="email" onchange={(p) => setemail(p.target.value)} />
+            <Inputbox name='Password' typename='password' onchange={(e) => setpassword(e.target.value)} />
             <Navigate name='Signup' onchange={() => handlechange()} />
         </div>
     )
